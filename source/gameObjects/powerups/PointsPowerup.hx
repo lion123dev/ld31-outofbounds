@@ -1,28 +1,21 @@
 package gameObjects.powerups;
+
+import flixel.FlxG;
 import gameObjects.Player;
 import openfl.display.BitmapData;
-import flixel.FlxG;
+
 /**
  * ...
  * @author lion123
  */
-
-@:bitmap("assets/images/PointsPowerup.png")
-class PointsPowerupImg extends BitmapData { }
-
-class PointsPowerup extends BasePowerup
-{
-
-	public function new() 
-	{
-		super(PointsPowerupImg);
+class PointsPowerup extends BasePowerup {
+	public function new() {
+		super(AssetPaths.PointsPowerup__png);
 	}
-	
-	override public function PlayerPickedUp(player:Player):Void 
-	{
+
+	override public function PlayerPickedUp(player:Player):Void {
 		super.PlayerPickedUp(player);
 		Reg.score += 250;
 		FlxG.sound.play("assets/sounds/bonus.wav");
 	}
-	
 }

@@ -1,25 +1,21 @@
-package ;
+package;
 
 import flixel.FlxG;
 import flixel.FlxState;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import gameObjects.enemies.BaseEnemy;
-import flixel.util.FlxRandom;
+
 /**
  * ...
  * @author lion123
  */
-class EndScreenState extends FlxState
-{
-
-	public function new() 
-	{
+class EndScreenState extends FlxState {
+	public function new() {
 		super();
 	}
-	
-	private function CreateEnemies(enemy:BaseEnemy):Void
-	{
+
+	private function CreateEnemies(enemy:BaseEnemy):Void {
 		if (enemy == null)
 			return;
 		enemy.SetRandomParams();
@@ -27,14 +23,13 @@ class EndScreenState extends FlxState
 		for (i in 0...10) {
 			newEnemy = enemy.copy();
 			newEnemy.SetRandomParams();
-			newEnemy.x = FlxRandom.floatRanged(50, Reg.SCREEN_WIDTH - 50);
-			newEnemy.y = FlxRandom.floatRanged(50, Reg.SCREEN_HEIGHT - 50);
+			newEnemy.x = FlxG.random.float(50, Reg.SCREEN_WIDTH - 50);
+			newEnemy.y = FlxG.random.float(50, Reg.SCREEN_HEIGHT - 50);
 			add(newEnemy);
 		}
 	}
-	
-	override public function create():Void 
-	{
+
+	override public function create():Void {
 		super.create();
 		FlxG.sound.music.stop();
 		CreateEnemies(BaseEnemy.GetByName(Reg.lastHitBy));
@@ -49,10 +44,8 @@ class EndScreenState extends FlxState
 		add(killedByText);
 		add(new FlxButton(160, 200, "Okay", Leave));
 	}
-	
-	private function Leave():Void
-	{
+
+	private function Leave():Void {
 		FlxG.switchState(new MenuState());
 	}
-	
 }
